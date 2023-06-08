@@ -1,17 +1,17 @@
 const fs = require('fs');
 const path = require('path');
- 
+const p = path.join(
+    path.dirname(process.mainModule.filename),
+    'data',
+    'products.json'
+); 
+
 const getProductsFromFile = (callBack)=>{
-    const p = path.join(
-        path.dirname(process.mainModule.filename),
-        'data',
-        'products.json'
-    );
     fs.readFile(p, (err, fileContent) => {
         if (err) {
-          return  cb([]);
+            callBack([]);
         }else{
-            cb(JSON.parse(fileContent));
+            callBack(JSON.parse(fileContent));
         }
     });
 }
